@@ -59,13 +59,16 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
+          if(data.name && data.email && data.jwtToken){
+              alert("Login successful")
+          }
           localStorage.setItem("token", data.jwtToken);
           localStorage.setItem("username", data.name);
           localStorage.setItem("email", data.email);
           navigate("/dashboard")
 
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert(error));
   };
 
   return (

@@ -2,6 +2,8 @@ import './App.css';
 import NavBar from './components/Navbar';
 import { Routes, Route } from "react-router-dom"
 import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -9,9 +11,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={ <Login/> } />
-        {/* <Route path="/list" element={ <List/> } />
-        <Route path="/edit/:id" element={<Edit />}/>
-        <Route path="/" exact element={ <Homepage/> } /> */}
+        <Route path="/dashboard" element={ <Dashboard/> } />
+        <Route path="/register" element={<Register />}/>
+        {/* <Route path="/" exact element={ <Homepage/> } /> */}
       </Routes>
     </div>
   );
