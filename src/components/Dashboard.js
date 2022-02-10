@@ -3,13 +3,13 @@ import {
   Routes,
   Route,
   useNavigate,
-  Navigate,
-  BrowserRouter,
 } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import { makeStyles, Paper } from "@material-ui/core";
 import { Button, Typography } from "@mui/material";
 import Upload from "./Upload";
+import CreateFolder from "./CreateFolder";
+import DriveContents from "./DriveContents";
 
 const useStyle = makeStyles((theme) => ({
   leftBorder: {},
@@ -43,7 +43,9 @@ function Dashboard({match}) {
       <Grid item xs={8}>
        
         <Routes>
+            <Route path='/' element={<DriveContents />} />
             <Route path={`upload`} element={<Upload />} />
+            <Route path={`create-folder`} element={<CreateFolder />} />
         </Routes>
         
       </Grid>
