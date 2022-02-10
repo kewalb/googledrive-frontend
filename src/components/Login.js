@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login() {
+function Login({setNavbar}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const classes = useStyles();
@@ -61,10 +61,12 @@ function Login() {
       .then((data) => {
           if(data.name && data.email && data.jwtToken){
               alert("Login successful")
+              setNavbar(true)
           }
           localStorage.setItem("token", data.jwtToken);
           localStorage.setItem("username", data.name);
           localStorage.setItem("email", data.email);
+          localStorage.setItem("id", data.id)
           navigate("/dashboard")
 
       })

@@ -3,9 +3,10 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   return (
     <AppBar
       position="static"
@@ -27,6 +28,8 @@ const NavBar = () => {
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            onClick={() => navigate("/")}
+            style={{cursor: "pointer"}}
           >
             MyDrive
           </Typography>
