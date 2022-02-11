@@ -24,17 +24,12 @@ function DriveContents() {
   }, []);
 
   const handleDownload = (file) => {
-    //   file = "attendence_bg.png"
-    //   const filename = encodeURIComponent(file.trim())
-    // const filename = file.replace(" ", '+')
-    //   console.log(filename)
       var requestOptions = {
         method: 'GET',
         redirect: 'follow',
-        // headers: {"Content-Type": 'application/json'}
       };
     fetch(`http://localhost:9000/api/download/${file}`, requestOptions)
-      .then((response) => response. arrayBuffer().then(function(buffer) {
+      .then((response) => response.arrayBuffer().then(function(buffer) {
         const url = window.URL.createObjectURL(new Blob([buffer]));
         const link = document.createElement("a");
         link.href = url;
@@ -53,7 +48,7 @@ function DriveContents() {
       <Grid spacing={2} container>
         {data
           ? data.files.map((file, index) => (
-              <Grid item lg={3} md={4} sm={6}>
+              <Grid item lg={3} md={4} sm={6} key={index}>
                 <Card
                   key={index}
                   style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
@@ -72,7 +67,7 @@ function DriveContents() {
       <Grid spacing={2} container>
         {data
           ? data.folders.map((folder, index) => (
-              <Grid item lg={3} md={4} sm={6}>
+              <Grid item lg={3} md={4} sm={6} key={index}>
                 <Card
                   key={index}
                   style={{ display: "flex", justifyContent: "center" }}

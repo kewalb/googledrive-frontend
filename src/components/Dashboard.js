@@ -32,11 +32,11 @@ function Dashboard({match}) {
       <Grid item xs={4} lg={3} md={3} className={classes.leftBorder}>
         <Paper className={classes.sideNav} elevation={5}>
           <Button variant="outlined" className={classes.uploadBtn} onClick={() => navigate(`upload`)}>
-            <Typography variant="h5">Upload</Typography>
+            <Typography variant="h7">Upload</Typography>
           </Button>
           <span>OR</span>
           <Button variant="outlined" className={classes.uploadBtn} onClick={() => navigate(`create-folder`)}>
-            <Typography variant="h5">Create folder</Typography>
+            <Typography variant="h7">Create folder</Typography>
           </Button>
         </Paper>
       </Grid>

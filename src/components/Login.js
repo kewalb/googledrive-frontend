@@ -25,6 +25,14 @@ const useStyles = makeStyles((theme) => ({
     margin: 30,
     height: "80vh",
   },
+  paperContainer: {
+    [theme.breakpoints.down('sm')]: {
+      margin: "auto"
+    },
+    [theme.breakpoints.down('md')]: {
+      margin: "auto"
+    }
+  },
   textInput: {
     marginBottom: 20,
   },
@@ -40,6 +48,12 @@ const useStyles = makeStyles((theme) => ({
     width: 600,
     height: "72vh",
     marginTop: 25,
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    }
   },
 }));
 
@@ -75,7 +89,7 @@ function Login({setNavbar}) {
 
   return (
     <Grid container spacing={2} style={{ backgroundColor: "honeydew" }}>
-      <Grid item xs={8} sm={7} lg={8} className={classes.homepage}>
+      <Grid item xs={12} sm={12} lg={8} className={classes.homepage}>
         <Typography variant="h3">Welcome to your personal drive.</Typography>
         <img
           src="https://www.downloadclipart.net/large/backup-png-pic.png"
@@ -83,7 +97,7 @@ function Login({setNavbar}) {
           className={classes.homepageImage}
         />
       </Grid>
-      <Grid item xs={4} sm={5} lg={4}>
+      <Grid item xs={10} sm={10} lg={4} className={classes.paperContainer}>
         <Paper elevation={4} className={classes.paper}>
           <form className={classes.loginForm}>
             <p className={classes.loginTitle}>Login</p>
