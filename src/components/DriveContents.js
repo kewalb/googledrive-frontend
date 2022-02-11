@@ -1,47 +1,89 @@
 import { Card, Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import FolderTwoToneIcon from "@mui/icons-material/FolderTwoTone";
+import InsertDriveFileTwoToneIcon from "@mui/icons-material/InsertDriveFileTwoTone";
 
 function DriveContents() {
-    const [data, setData] = useState({})
-  const [files, setFiles] = useState();
-  const [folders, setFolders] = useState();
+  const [data, setData] = useState();
   const email = localStorage.getItem("email");
 
   const getData = async () => {
-    await fetch(`http://localhost:9000/dashboard/user-dashboard-details/${email}`)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      setData(data)
-      // if (data.files) {
-      //   setFiles(data.files);
-      // }
-      // if (data.folders) {
-      //   setFolders(data.folders);
-      // }
-    })
-    .catch((error) => console.log(error));
-  }
+    await fetch(
+      `http://localhost:9000/dashboard/user-dashboard-details/${email}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setData(data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
-  console.log(data);
+  const handleDownload = (file) => {
+    //   file = "attendence_bg.png"
+    //   const filename = encodeURIComponent(file.trim())
+    // const filename = file.replace(" ", '+')
+    //   console.log(filename)
+      var requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        // headers: {"Content-Type": 'application/json'}
+      };
+    fetch(`http://localhost:9000/api/download/${file}`, requestOptions)
+      .then((response) => response. arrayBuffer().then(function(buffer) {
+        const url = window.URL.createObjectURL(new Blob([buffer]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", file); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+      })
+      ).catch(error => console.log(error))
+  };
 
   return (
-    <Grid>
-      <Grid item lg={12} md={12} sm={12} xs={12}>
-        <Typography style={{ float: "left", margin: 30 }} variant="h5">
-          Files
-        </Typography>
+    <div>
+      <Typography style={{ float: "left", margin: 30 }} variant="h5">
+        Files
+      </Typography>
+      <Grid spacing={2} container>
+        {data
+          ? data.files.map((file, index) => (
+              <Grid item lg={3} md={4} sm={6}>
+                <Card
+                  key={index}
+                  style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
+                  onClick={() => handleDownload(file)}
+                >
+                  <InsertDriveFileTwoToneIcon />
+                  {file}
+                </Card>
+              </Grid>
+            ))
+          : ""}
       </Grid>
-      <Grid item lg={3} md={4} sm={6} style={{ display: "flex" }}>
-        {data.files.map((file, index) => (
-          <Card key={index}>{file}</Card>
-        ))}
+      <Typography style={{ float: "left", margin: 30 }} variant="h5">
+        Folders
+      </Typography>
+      <Grid spacing={2} container>
+        {data
+          ? data.folders.map((folder, index) => (
+              <Grid item lg={3} md={4} sm={6}>
+                <Card
+                  key={index}
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <FolderTwoToneIcon /> {folder}
+                </Card>
+              </Grid>
+            ))
+          : ""}
       </Grid>
-    </Grid>
+    </div>
   );
 }
 
