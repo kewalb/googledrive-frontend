@@ -55,11 +55,11 @@ function UserNavbar({setNavbar, name}) {
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+              onClick={() => navigate("/dashboard")}
             >
               MyDrive
             </Typography>
-        
-            <Typography>Welcome </Typography>
+  
             <Box sx={{ flexGrow: 1 }}>
                 
               <Tooltip title="Open settings">
