@@ -87,6 +87,34 @@ function Login({setNavbar}) {
       .catch((error) => alert(error));
   };
 
+  const handleGuest = () => {
+    const email = process.env.REACT_APP_EMAIL
+    const password = process.env.REACT_APP_PASSWORD
+    console.log(email, password)
+    fetch("http://localhost:9000/user/login", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ email, password  }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+          if(data.name && data.email && data.jwtToken){
+              alert("Login successful")
+              setNavbar(true)
+          }
+          localStorage.setItem("token", data.jwtToken);
+          localStorage.setItem("username", data.name);
+          localStorage.setItem("email", data.email);
+          localStorage.setItem("id", data.id)
+          navigate("/dashboard")
+
+      })
+      .catch((error) => alert(error));
+
+  }
+
   return (
     <Grid container spacing={2} style={{ backgroundColor: "honeydew" }}>
       <Grid item xs={12} sm={12} lg={8} className={classes.homepage}>
@@ -124,6 +152,14 @@ function Login({setNavbar}) {
               onClick={handleLogin}
             >
               Login
+            </Button>
+            <Button
+              variant="outlined"
+              color="success"
+              className={classes.loginButton}
+              onClick={handleGuest}
+            >
+              Guest
             </Button>
           </form>
           <div>

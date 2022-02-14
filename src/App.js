@@ -35,12 +35,9 @@ function App() {
 export default App;
 
 function RequireAuth({ children, redirectTo }) {
-  const user = localStorage.getItem("username");
-  const token = localStorage.getItem("token");
-  const email = localStorage.getItem("email");
-  console.log(jwt_decode(token))
+  const token = localStorage.getItem("token") ? localStorage.getItem("token") : false;
   const getAuth = () => {
-    if (user && email && token) {
+    if (token) {
       const { exp } = jwt_decode(token);
       
       if (Date.now() >= exp * 1000) {
@@ -53,7 +50,5 @@ function RequireAuth({ children, redirectTo }) {
     }
   };
   let isAuthenticated = getAuth();
-  // console.log(isAuthenticated)
-  // if(isAuthenticated === false){localStorage.clear()}
   return  isAuthenticated ? children : <Navigate to={redirectTo} />;
 }
