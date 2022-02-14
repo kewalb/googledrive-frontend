@@ -39,7 +39,7 @@ function Register() {
           alert("Password did not match please try again")
       }
       else{
-      fetch("http://localhost:9000/user/signup", {
+      fetch("https://customdrive-backend.herokuapp.com/user/signup", {
           method: "POST",
           headers:{
               "content-type": "application/json"

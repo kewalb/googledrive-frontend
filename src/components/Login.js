@@ -64,7 +64,7 @@ function Login({setNavbar}) {
   const navigate = useNavigate()
 
   const handleLogin = () => {
-    fetch("http://localhost:9000/user/login", {
+    fetch("https://customdrive-backend.herokuapp.com/user/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -91,7 +91,7 @@ function Login({setNavbar}) {
     const email = process.env.REACT_APP_EMAIL
     const password = process.env.REACT_APP_PASSWORD
     console.log(email, password)
-    fetch("http://localhost:9000/user/login", {
+    fetch("https://customdrive-backend.herokuapp.com/user/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

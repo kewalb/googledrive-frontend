@@ -9,7 +9,7 @@ function DriveContents() {
 
   const getData = async () => {
     await fetch(
-      `http://localhost:9000/dashboard/user-dashboard-details/${email}`
+      `https://customdrive-backend.herokuapp.com/dashboard/user-dashboard-details/${email}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -28,7 +28,7 @@ function DriveContents() {
         method: 'GET',
         redirect: 'follow',
       };
-    fetch(`http://localhost:9000/api/download/${file}`, requestOptions)
+    fetch(`https://customdrive-backend.herokuapp.com/api/download/${file}`, requestOptions)
       .then((response) => response.arrayBuffer().then(function(buffer) {
         const url = window.URL.createObjectURL(new Blob([buffer]));
         const link = document.createElement("a");

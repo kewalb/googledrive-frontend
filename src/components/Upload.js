@@ -19,7 +19,7 @@ function Upload() {
     setId(localStorage.getItem("id"))
     formData.append("file", value);
     
-    fetch(`http://localhost:9000/api/upload/${id}`, {
+    fetch(`https://customdrive-backend.herokuapp.com/api/upload/${id}`, {
       method: "POST",
       body: formData,
     })

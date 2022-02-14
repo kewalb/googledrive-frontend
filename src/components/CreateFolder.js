@@ -6,7 +6,7 @@ function CreateFolder() {
   const [folderName, setFolderName] = useState("");
   const id = localStorage.getItem("id")
   const handleCreate = () => {
-    fetch(`http://localhost:9000/api/create-folder/${id}`, {
+    fetch(`https://customdrive-backend.herokuapp.com/api/create-folder/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
