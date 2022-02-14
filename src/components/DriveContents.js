@@ -7,8 +7,8 @@ function DriveContents() {
   const [data, setData] = useState();
   const email = localStorage.getItem("email");
 
-  const getData = async () => {
-    await fetch(
+  const getData = () => {
+  fetch(
       `https://customdrive-backend.herokuapp.com/dashboard/user-dashboard-details/${email}`
     )
       .then((response) => response.json())
