@@ -90,7 +90,6 @@ function Login({setNavbar}) {
   const handleGuest = () => {
     const email = process.env.REACT_APP_EMAIL
     const password = process.env.REACT_APP_PASSWORD
-    console.log(email, password)
     fetch("https://customdrive-backend.herokuapp.com/user/login", {
       method: "POST",
       headers: {

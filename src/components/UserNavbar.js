@@ -47,6 +47,7 @@ function UserNavbar({setNavbar, name}) {
               noWrap
               component="div"
               sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+              onClick={() => navigate("/dashboard")}
             >
               MyDrive
             </Typography>
