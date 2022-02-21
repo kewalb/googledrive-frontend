@@ -48,6 +48,7 @@ function UserNavbar({setNavbar, name}) {
               component="div"
               sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
               onClick={() => navigate("/dashboard")}
+              style={{cursor: "pointer"}}
             >
               MyDrive
             </Typography>

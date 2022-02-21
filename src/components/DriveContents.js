@@ -53,6 +53,7 @@ function DriveContents() {
        
       >
         <CircularProgress color="inherit" />
+        <div>&nbsp;</div><div>&nbsp;</div> Downloading
       </Backdrop>
       <Typography style={{ float: "left", margin: 30 }} variant="h5">
         Files
