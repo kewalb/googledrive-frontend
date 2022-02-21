@@ -2,9 +2,12 @@ import { Card, Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import FolderTwoToneIcon from "@mui/icons-material/FolderTwoTone";
 import InsertDriveFileTwoToneIcon from "@mui/icons-material/InsertDriveFileTwoTone";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function DriveContents() {
   const [data, setData] = useState();
+  const [isLoading, setIsloading] = useState(false)
   const email = localStorage.getItem("email");
 
   const getData = () => {
@@ -28,6 +31,7 @@ function DriveContents() {
         method: 'GET',
         redirect: 'follow',
       };
+      setIsloading(true)
     fetch(`https://customdrive-backend.herokuapp.com/api/download/${file}`, requestOptions)
       .then((response) => response.arrayBuffer().then(function(buffer) {
         const url = window.URL.createObjectURL(new Blob([buffer]));
@@ -36,12 +40,20 @@ function DriveContents() {
         link.setAttribute("download", file); //or any other extension
         document.body.appendChild(link);
         link.click();
+        setIsloading(false)
       })
       ).catch(error => console.log(error))
   };
 
   return (
     <div>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+       
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Typography style={{ float: "left", margin: 30 }} variant="h5">
         Files
       </Typography>
