@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 
 
-const settings = ['Profile', 'Dashboard', 'Logout'];
+const settings = ['Dashboard', 'Logout'];
 function UserNavbar({setNavbar, name}) {
     const navigate = useNavigate()
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -23,10 +23,7 @@ function UserNavbar({setNavbar, name}) {
 
   
     const handleCloseUserMenu = (setting) => {
-        if(setting === "Profile"){
-
-        }
-        else if(setting === "Dashboard"){
+       if(setting === "Dashboard"){
             navigate("/dashboard")
         }
         else if(setting === "Logout"){
