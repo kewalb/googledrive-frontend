@@ -52,6 +52,7 @@ function Upload() {
         open={isLoading}
       >
         <CircularProgress color="inherit" />
+        <div>&nbsp;</div><div>&nbsp;</div> Uploading
       </Backdrop>
       <div style={{ marginLeft: 50, marginBottom: 30 }}>
         <DropzoneArea onChange={handleChange} filesLimit={1} />
